@@ -1,0 +1,74 @@
+@startuml uml1
+
+actor actor_a
+participant p_a
+participant p_b
+box box1
+participant "participant c" as p_c
+participant p_d
+endbox
+box box2
+participant p_e
+participant p_f
+endbox
+participant p_g
+participant p_h
+
+== section 1 ==
+
+actor_a -> p_a : start
+activate p_a
+  p_a -> p_b : open
+  note left p_b : this is note left
+  note right p_b : this is note right
+  activate p_b
+    p_b -> p_e : register
+    activate p_e
+      p_e -> p_f : store to database
+      activate p_f
+        p_f -> p_e
+      deactivate p_f
+      p_e -> p_b : result
+    deactivate p_e
+
+    opt if option 1 is valid
+      p_b -> p_g : share
+      activate p_g
+        p_g -> p_b
+      deactivate p_g
+    end opt
+
+    p_b -> p_c : go to main process
+
+    activate p_c
+      group group1
+        alt if alt 1 is true
+          opt if the field is null
+            p_c -> p_b : error
+          end opt
+          p_c -> p_c : process hogehoge
+        else else
+          p_c -> p_h : notify
+        end alt
+      end group
+
+      group group2
+        alt if alt 2 is true
+          opt if the field is null
+            p_c -> p_b : error
+          end opt
+          p_c -> p_d : store to database
+        else else
+          p_c -> p_c : process fugafuga
+        end alt
+      end group
+    deactivate p_c
+
+    p_c -> p_b
+    p_b -> p_a : close
+  deactivate p_b
+p_a -> p_a : process piypiyo
+p_a -> actor_a : show result
+deactivate p_a
+
+@enduml
