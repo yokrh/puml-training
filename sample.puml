@@ -5,11 +5,12 @@ title puml-training
 actor actor_a
 participant p_a
 participant p_b
-box box1
+box box1 #eeeeff
 participant "participant c" as p_c
 participant p_d
+database "db" as db
 endbox
-box box2
+box box2 #ffeeee
 participant p_e
 participant p_f
 endbox
