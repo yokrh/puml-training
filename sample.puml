@@ -1,5 +1,7 @@
 @startuml uml1
 
+title puml-training
+
 actor actor_a
 participant p_a
 participant p_b
