@@ -22,6 +22,11 @@ participant p_h
 actor_a -> p_a : start
 activate p_a
   p_a -> p_b : open
+  note right
+    multiple
+    line
+    note
+  end note
   note left p_b : this is note left
   note right p_b : this is note right
   activate p_b
