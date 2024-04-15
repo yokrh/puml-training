@@ -48,6 +48,7 @@ activate p_a
         alt if alt 1 is true
           opt if the field is null
             p_c -> p_b : error
+            p_b -> p_a : error
           end opt
           p_c -> p_c : process hogehoge
         else else
@@ -56,13 +57,15 @@ activate p_a
       end group
 
       group group2
-        alt if alt 2 is true
+        alt if alt 2 is case1
           opt if the field is null
             p_c -> p_b : error
           end opt
           p_c -> p_d : store to database
-        else else
+        else if alt 2 is case2
           p_c -> p_c : process fugafuga
+        else else
+          p_c -> p_c : process piyopiyo
         end alt
       end group
     deactivate p_c
@@ -70,7 +73,7 @@ activate p_a
     p_c -> p_b
     p_b -> p_a : close
   deactivate p_b
-p_a -> p_a : process piypiyo
+p_a -> p_a : post process
 p_a -> actor_a : show result
 deactivate p_a
 
