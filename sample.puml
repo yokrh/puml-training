@@ -29,6 +29,7 @@ activate p_a
   end note
   note left p_b : this is note left
   note right p_b : this is note right
+  note over p_b : note over
   activate p_b
     p_b -> p_e : register
     activate p_e
